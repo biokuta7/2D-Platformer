@@ -1,9 +1,81 @@
 fileFormatVersion: 2
 guid: 4c178d4f50ca43646a5dc9cbfc1ca0f3
-timeCreated: 1511936296
+timeCreated: 1512337091
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: WeaponSpritesheet_0
+    21300002: WeaponSpritesheet_1
+    21300004: WeaponSpritesheet_2
+    21300006: WeaponSpritesheet_3
+    21300008: WeaponSpritesheet_4
+    21300010: WeaponSpritesheet_5
+    21300012: WeaponSpritesheet_6
+    21300014: WeaponSpritesheet_7
+    21300016: WeaponSpritesheet_8
+    21300018: WeaponSpritesheet_9
+    21300020: WeaponSpritesheet_10
+    21300022: WeaponSpritesheet_11
+    21300024: WeaponSpritesheet_12
+    21300026: WeaponSpritesheet_13
+    21300028: WeaponSpritesheet_14
+    21300030: WeaponSpritesheet_15
+    21300032: WeaponSpritesheet_16
+    21300034: WeaponSpritesheet_17
+    21300036: WeaponSpritesheet_18
+    21300038: WeaponSpritesheet_19
+    21300040: WeaponSpritesheet_20
+    21300042: WeaponSpritesheet_21
+    21300044: WeaponSpritesheet_22
+    21300046: WeaponSpritesheet_23
+    21300048: WeaponSpritesheet_24
+    21300050: WeaponSpritesheet_25
+    21300052: WeaponSpritesheet_26
+    21300054: WeaponSpritesheet_27
+    21300056: WeaponSpritesheet_28
+    21300058: WeaponSpritesheet_29
+    21300060: WeaponSpritesheet_30
+    21300062: WeaponSpritesheet_31
+    21300064: WeaponSpritesheet_32
+    21300066: WeaponSpritesheet_33
+    21300068: WeaponSpritesheet_34
+    21300070: WeaponSpritesheet_35
+    21300072: WeaponSpritesheet_36
+    21300074: WeaponSpritesheet_37
+    21300076: WeaponSpritesheet_38
+    21300078: WeaponSpritesheet_39
+    21300080: WeaponSpritesheet_40
+    21300082: WeaponSpritesheet_41
+    21300084: WeaponSpritesheet_42
+    21300086: WeaponSpritesheet_43
+    21300088: WeaponSpritesheet_44
+    21300090: WeaponSpritesheet_45
+    21300092: WeaponSpritesheet_46
+    21300094: WeaponSpritesheet_47
+    21300096: WeaponSpritesheet_48
+    21300098: WeaponSpritesheet_49
+    21300100: WeaponSpritesheet_50
+    21300102: WeaponSpritesheet_51
+    21300104: WeaponSpritesheet_52
+    21300106: WeaponSpritesheet_53
+    21300108: WeaponSpritesheet_54
+    21300110: WeaponSpritesheet_55
+    21300112: WeaponSpritesheet_56
+    21300114: WeaponSpritesheet_57
+    21300116: WeaponSpritesheet_58
+    21300118: WeaponSpritesheet_59
+    21300120: WeaponSpritesheet_60
+    21300122: WeaponSpritesheet_61
+    21300124: WeaponSpritesheet_62
+    21300126: WeaponSpritesheet_63
+    21300128: WeaponSpritesheet_64
+    21300130: WeaponSpritesheet_65
+    21300132: WeaponSpritesheet_66
+    21300134: WeaponSpritesheet_67
+    21300136: WeaponSpritesheet_68
+    21300138: WeaponSpritesheet_69
+    21300140: WeaponSpritesheet_70
+    21300142: WeaponSpritesheet_71
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,13 +112,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -85,7 +157,567 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: WeaponSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 186
+        width: 11
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 187
+        width: 18
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 186
+        width: 11
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 187
+        width: 18
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 186
+        width: 11
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 170
+        width: 9
+        height: 4
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 170
+        width: 11
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 171
+        width: 18
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 170
+        width: 11
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 171
+        width: 18
+        height: 6
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 170
+        width: 11
+        height: 5
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 157
+        width: 4
+        height: 9
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 156
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 152
+        width: 6
+        height: 15
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 156
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 152
+        width: 6
+        height: 15
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 156
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 141
+        width: 4
+        height: 9
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 140
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 136
+        width: 6
+        height: 15
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 140
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 136
+        width: 6
+        height: 15
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 140
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 122
+        width: 4
+        height: 9
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 120
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 121
+        width: 6
+        height: 15
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 120
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 121
+        width: 6
+        height: 15
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 120
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 106
+        width: 4
+        height: 9
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 104
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 105
+        width: 6
+        height: 15
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 104
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 105
+        width: 6
+        height: 15
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 104
+        width: 5
+        height: 11
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 187
+        width: 9
+        height: 3
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 186
+        width: 9
+        height: 4
+      alignment: 8
+      pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 171
+        width: 9
+        height: 3
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 170
+        width: 9
+        height: 3
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WeaponSpritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 143
+        width: 3
+        height: 7
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
