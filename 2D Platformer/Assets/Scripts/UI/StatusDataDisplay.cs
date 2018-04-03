@@ -14,7 +14,13 @@ public class StatusDataDisplay : MonoBehaviour {
 		text = GetComponent<Text> ();		
 	}
 
-	void LateUpdate () {
+	private void LateUpdate() {
+		if (player != null) {
+			TextUpdate ();
+		}
+	}
+
+	private void TextUpdate () {
 		fuelPercent += 3;
 
 		float fuelDecimal = player.GetFuelPercentage () * 100;

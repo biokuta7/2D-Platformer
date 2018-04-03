@@ -15,9 +15,10 @@ public enum AmmoMode {
 
 }
 
-public class Gun : MonoBehaviour {
+[CreateAssetMenu(fileName = "New Gun", menuName = "Items/Gun")]
+public class Gun : ScriptableObject {
 
-	public string gunName;
+	public new string name;
     public Sprite gunSpriteRight;
 	public Sprite gunSpriteUp;
 	public Vector3 handleOffset;
@@ -31,8 +32,13 @@ public class Gun : MonoBehaviour {
 	public int maxAmmo;
 	private int ammo;
 
-	private void Start() {
+	public virtual void Init() {
 		AddAmmo (1000);
+
+		ObjectPooler.Pool pool = new ObjectPooler.Pool (name + "_Ammo", bullet, bulletCount);
+
+		ObjectPooler.instance.AddToPool (pool);
+
 	}
 
 	public int GetAmmo() { return ammo; }
@@ -48,8 +54,6 @@ public class Gun : MonoBehaviour {
 			ammo -= 1;
 
 		}
-
-		g.layer = 0;
 
 		Projectile p = g.GetComponent<Projectile> ();
 		if (p != null) {

@@ -10,8 +10,6 @@ public class Holster : MonoBehaviour {
     public Gun currentGun;
 	public ParticleSystem muzzleFlash;
 
-	public int objectPoolLayer = 10;
-
 	private int currentGunID;
 	private Vector3 muzzlePosition;
 	private Vector3 direction;
@@ -20,17 +18,16 @@ public class Holster : MonoBehaviour {
     SpriteRenderer spriteRenderer;
 	Player player;
 
-	private List<GameObject> bullets;
-
 	private void Start() {
-
-		bullets = new List<GameObject> ();
-
 		player = GetComponentInParent<Player> ();
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 
 		if (inventory.Count > 0) {
 			EquipGun (inventory [0]);
+		}
+
+		foreach (Gun g in inventory) {
+			g.Init ();
 		}
 
 	}
@@ -42,40 +39,42 @@ public class Holster : MonoBehaviour {
 
 	}
 
-	public bool Shot() { return shot; }
+	public int GetCurrentWeaponID() {
+		return currentGunID;
+	}
 
-	private GameObject GetNextBullet() {
+	public string GetWeaponInfoDisplay() {
 
-		for (int i = 0; i < bullets.Count; i++) {
-			if (bullets [i].layer == objectPoolLayer) {
-				return bullets [i];
+		string ret = "";
+
+		for (int i = 0; i < inventory.Count; i++) {
+
+			bool current = currentGunID == i;
+
+			if (current) {
+				ret += "<color=red>";
 			}
+
+			ret += inventory [i].name.ToUpper ();
+
+			if (current) {
+				ret += "</color>";
+			}
+
+			ret += "\n";
+
+
 		}
 
-		return null;
+		return ret;
 
 	}
 
+	public bool Shot() { return shot; }
+
 	private void EquipGun(Gun g)
     {
-
 		currentGun = g;
-
-		for (int i = 0; i < bullets.Count; i++) {
-			Destroy (bullets [i]);
-		}
-
-		bullets.Clear ();
-
-		for (int i = 0; i < g.bulletCount; i++) {
-
-			GameObject c = Instantiate (g.bullet, Vector3.down * 100f, Quaternion.identity);
-			c.layer = objectPoolLayer;
-			c.name = currentGun.gunName.ToUpper() + " BULLET ID " + i;
-			bullets.Add (c);
-
-		}
-
 
     }
 
@@ -96,18 +95,19 @@ public class Holster : MonoBehaviour {
 
 			(currentGun.ammoMode.Equals (AmmoMode.UNLIMITED) || currentGun.GetAmmo () > 0) &&
 			
-			(Input.GetButtonDown ("Fire2")
-			||
-			(timer > currentGun.fireDelay && (currentGun.fireMode.Equals (FireMode.AUTO) && Input.GetButton ("Fire2"))))) {
+			(Input.GetButtonDown ("Fire2") || (timer > currentGun.fireDelay && (currentGun.fireMode.Equals (FireMode.AUTO) && Input.GetButton ("Fire2"))))) {
 
-			shot = true;
-			timer = 0;
+			GameObject g = ObjectPooler.instance.SpawnFromPool (currentGun.name + "_Ammo", transform.position + muzzlePosition, Quaternion.identity);
 
-			GameObject g = GetNextBullet ();
 			if (g != null) {
+
+				shot = true;
+				timer = 0;
+
 				muzzleFlash.transform.localPosition = muzzlePosition;
 				muzzleFlash.Emit (1);
 				currentGun.Shoot (transform.position + muzzlePosition, direction, g);
+			
 			}
 		} else if (currentGun.ammoMode.Equals (AmmoMode.RECHARGE) && timer > currentGun.fireDelay) {
 

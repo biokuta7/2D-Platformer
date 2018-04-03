@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour, IPoolableObject {
 
 	public Sprite[] rightSprites;
 	public Sprite[] upSprites;
@@ -19,26 +19,35 @@ public class Projectile : MonoBehaviour {
 	private float lifeTime;
 	protected float speed;
 	private Vector3 direction;
-	private bool boof;
+	private bool switchableSprites;
+	private bool alive;
 
+	private SpriteRenderer spriteRenderer;
 	private static CameraSmoothFollow cam;
 	private static int ID = 0;
 
-	private void Awake() {
+	private void Start() {
 		if (ID <= 0) {
 			cam = Camera.main.GetComponent<CameraSmoothFollow> ();
 			ID++;
 		}
 	}
 
-	SpriteRenderer spriteRenderer;
+	public void OnObjectSpawn() {
+		alive = false;
+	}
+
+	public bool GetAlive() {
+		return alive;
+	}
 
 	public virtual void Update() {
-		if (gameObject.layer != 10) {
+
+		if (alive) {
 			Life ();
 			CheckForCollisions ();
 			Move (speed * Time.deltaTime);
-			if (boof) {
+			if (switchableSprites) {
 				SwitchOffSprites ();
 			}
 		}
@@ -71,12 +80,12 @@ public class Projectile : MonoBehaviour {
 
 	public virtual void Spawn(Vector3 pos, Vector3 dir) {
 
-		gameObject.layer = 0;
+		alive = true;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		speed = range / time;
 		lifeTime = time;
 
-		boof = rightSprites.Length > 1 || upSprites.Length > 1;
+		switchableSprites = rightSprites.Length > 1 || upSprites.Length > 1;
 
 		direction = dir;
 
@@ -119,12 +128,13 @@ public class Projectile : MonoBehaviour {
 			Instantiate (changedParticles, transform.position, Quaternion.identity);
 			changedParticles = null;
 		} else {
+
 			Instantiate (defaultDeathParticles, transform.position, Quaternion.identity);
 		}
 
 		transform.position = Vector3.down * 500f;
 
-		gameObject.layer = 10;
+		alive = false;
 
 	}
 

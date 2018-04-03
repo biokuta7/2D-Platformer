@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b9ff09a469d5b459a054633dc7d247, type: 3}
+  m_Name: MachineGunData
+  m_EditorClassIdentifier: 
+  name: Machine Gun
+  gunSpriteRight: {fileID: 21300014, guid: 4c178d4f50ca43646a5dc9cbfc1ca0f3, type: 3}
+  gunSpriteUp: {fileID: 21300038, guid: 4c178d4f50ca43646a5dc9cbfc1ca0f3, type: 3}
+  handleOffset: {x: 0, y: 0, z: 0.0625}
+  muzzlePosition: {x: 0.7, y: 0.1875, z: -0.125}
+  fireMode: 0
+  ammoMode: 2
+  bullet: {fileID: 1578209233029050, guid: 8351520d2a97baa46864d7a601244939, type: 2}
+  bulletCount: 3
+  fireDelay: 0.1
+  maxAmmo: 100
+  amount: 2.5
+  onlyY: 0

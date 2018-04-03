@@ -13,8 +13,6 @@ public class Player : MonoBehaviour {
     public float jetpackSpeed = 5.0f;
     public float jetpackFuelRechargeAmount = 10.0f;
 
-    public Transform camTarget;
-    public float range = 5;
 
     public ParticleSystem jetpackParticles;
 
@@ -44,6 +42,13 @@ public class Player : MonoBehaviour {
         InitVerticalValues();
         direction = Direction.RIGHT;
         facingRight = true;
+
+		Camera c = GetComponentInChildren<Camera> ();
+
+		if (c != null) {
+			c.transform.SetParent (null);	
+		}
+
     }
 
     private void Update()
@@ -57,11 +62,11 @@ public class Player : MonoBehaviour {
 
         //ANIMATION
         Animation();
-        UpdateCamTarget();
     }
 
     #region PUBLIC
 
+	public Direction GetDirection() { return direction; }
 	public float GetFuelPercentage() { return Mathf.Clamp01(jetpackFuel / jetpackFuelRechargeAmount); }
 	public void ApplyForce(Vector3 force) {velocity += force;}
     public void Die(){transform.position = Vector3.zero;}
@@ -94,17 +99,6 @@ public class Player : MonoBehaviour {
         anim.SetFloat("VelocityX", Mathf.Abs(movementInput.x));
         anim.SetFloat("VelocityY", Mathf.Sign(velocity.y));
 		anim.SetFloat("Looking", GetLookValue());
-
-    }
-
-    private void UpdateCamTarget()
-    {
-
-        Vector3 targetPosition = transform.position +   new Vector3(
-            facingRight ? 1 : -1,
-            Controller2D.Direction2Vector(direction).y) * range;
-
-        camTarget.position = targetPosition;
 
     }
 

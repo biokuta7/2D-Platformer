@@ -138,7 +138,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: z
+    positiveButton: enter
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -154,7 +154,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: x
+    positiveButton: escape
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
