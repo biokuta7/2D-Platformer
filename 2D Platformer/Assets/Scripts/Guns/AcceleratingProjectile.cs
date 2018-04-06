@@ -12,22 +12,15 @@ public class AcceleratingProjectile : Projectile {
 	public override void Spawn (Vector3 pos, Vector3 dir)
 	{
 		base.Spawn (pos, dir);
-
 		speed = initialVelocity;
 		maxSpeed = -speed + (2 * range) / time;
 		acceleration = (maxSpeed-speed) / time;
-
 	}
 
 	public override void Update ()
 	{
-
-
-
 		speed += acceleration * Time.deltaTime;
-
 		base.Update ();
-	
 	}
 
 }

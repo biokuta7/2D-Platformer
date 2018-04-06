@@ -5,16 +5,41 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour {
 
-    public float maxJumpHeight = 3f;
-    public float minJumpHeight = 1.5f;
-    public float timeToJumpApex = .4f;
-    public float accelerationTimeGrounded = .1f;
-    public float accelerationTimeAirborneMultiplier = 2f;
-    public float jetpackSpeed = 5.0f;
-    public float jetpackFuelRechargeAmount = 10.0f;
+	[System.Serializable]
+	public class Stats {
 
+		public bool godMode = false;
+		public float maxHealth = 5.0f;
+		[HideInInspector]
+		public float health;
+		[HideInInspector]
+		public bool dead;
+		public float secondsInvulnerableAfterDamage = 2.0f;
+	}
 
-    public ParticleSystem jetpackParticles;
+	[System.Serializable]
+	public class Movement {
+		public float maxJumpHeight = 3f;
+		public float minJumpHeight = 1.5f;
+		public float timeToJumpApex = .4f;
+		public float accelerationTimeGrounded = .1f;
+		public float accelerationTimeAirborneMultiplier = 2f;
+		public float jetpackSpeed = 5.0f;
+		public float jetpackFuelRechargeAmount = 10.0f;
+	}
+
+	[System.Serializable]
+	public class FX
+	{
+
+		public ParticleSystem jetpackParticles;
+		public GameObject deathParticles;
+	}
+
+	public static Player instance;
+	public Movement movement;
+	public Stats stats;
+	public FX fx;
 
     float moveSpeed = 6f;
     float gravity;
@@ -26,6 +51,11 @@ public class Player : MonoBehaviour {
     bool jetpack;
     float jetpackFuel;
 
+	bool forceApplied;
+
+	private float invincibilityFrame = 0.0f;
+	private bool invincible;
+
     Controller2D controller;
     Animator anim;
     Direction direction;
@@ -33,17 +63,25 @@ public class Player : MonoBehaviour {
 	bool lookingDown;
 	bool headBob = false;
     SpriteRenderer spriteRenderer;
+	private Holster holster;
+
+
+	private void Awake() {
+		instance = this;
+	}
 
     private void Start()
     {
+		holster = GetComponentInChildren<Holster> ();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         controller = GetComponent<Controller2D>();
         InitVerticalValues();
         direction = Direction.RIGHT;
         facingRight = true;
-
 		Camera c = GetComponentInChildren<Camera> ();
+
+		FullHeal ();
 
 		if (c != null) {
 			c.transform.SetParent (null);	
@@ -53,23 +91,71 @@ public class Player : MonoBehaviour {
 
     private void Update()
     {
-        //MOVEMENT
-        GetInput();
-        Horizontal();
-        Vertical();
-        Jetpack();
-        ApplyMovement();
+		if (!WorldState.paused && !stats.dead) {
+			//MOVEMENT
+			GetInput ();
+			Horizontal ();
+			Vertical ();
+			Jetpack ();
+			ApplyMovement ();
 
-        //ANIMATION
-        Animation();
+			//STATS
+			ManageStats();
+
+			//ANIMATION
+			Animation ();
+		}
     }
 
     #region PUBLIC
 
+	//FUEL
+	public float GetFuelPercentage() { return Mathf.Clamp01(jetpackFuel / movement.jetpackFuelRechargeAmount); }
+	public void Refuel() { jetpackFuel = movement.jetpackFuelRechargeAmount; }
+
+	//HEALTH
+	public float GetHealthPercentage() { return Mathf.Clamp01(stats.health / stats.maxHealth); }
+	public void AddHP(float amount) { stats.health += amount; }
+	public void FullHeal() {stats.health = stats.maxHealth; }
+	public void Die(){
+		CancelInvoke ();
+		stats.dead = true;
+		Instantiate (fx.deathParticles, transform.position, Quaternion.identity);
+		SetSpriteVisibility (false);
+	}
+
+	public void Revive() {
+		stats.dead = false;
+		SetSpriteVisibility (true);
+		FullHeal ();
+	}
+
+	public void SetGodMode(bool g) {stats.godMode = g;}
+	public void SetGodMode() {stats.godMode = !stats.godMode;}
+
+	public bool GetHurt(float amount) {
+
+		if (stats.godMode || invincible) {
+			return false;
+		}
+
+		SetVelocity (Vector3.up * 6.0f);
+
+		AddHP (-1f * Mathf.Abs (amount));
+		SetInvincibility (true);
+
+		return true;
+
+	}
+
+	//PHYSX
+	public Holster GetHolster() { return holster; }
 	public Direction GetDirection() { return direction; }
-	public float GetFuelPercentage() { return Mathf.Clamp01(jetpackFuel / jetpackFuelRechargeAmount); }
-	public void ApplyForce(Vector3 force) {velocity += force;}
-    public void Die(){transform.position = Vector3.zero;}
+	public void ApplyForce(Vector3 force) {velocity += force; forceApplied = true;}
+	public void SetVelocity(Vector3 v) {velocity = v; forceApplied = true;}
+	public void SetPosition(Vector2 position) {transform.position = position;}
+
+	//ANIMATION
 	public bool GetHeadBob() {
 		if (Mathf.Abs(movementInput.x) > 0)
 			return headBob;
@@ -83,10 +169,57 @@ public class Player : MonoBehaviour {
 		
 #endregion
 
+	#region STATS
+
+	private void ManageStats() {
+
+		if (invincible) {
+
+			invincibilityFrame -= Time.deltaTime;
+			if (invincibilityFrame < 0) {
+				SetInvincibility (false);
+			}
+
+		}
+
+		if (stats.health <= 0) {
+			Die ();
+		}
+
+	}
+
+	private void SetInvincibility(bool i) {
+
+		invincible = i;
+
+		if (invincible) {
+			invincibilityFrame = stats.secondsInvulnerableAfterDamage;
+			InvokeRepeating ("ToggleSpriteVisibility", 0.0f, .04f);
+		} else {
+			CancelInvoke ();
+			spriteRenderer.enabled = true;
+		}
+
+	}
+
+
+
+#endregion
+
     #region ANIMATION
 
 	private void SetHeadBobUp() {headBob = true;}
 	private void SetHeadBobDown() {headBob = false;}
+
+	private void SetSpriteVisibility(bool target) {
+		spriteRenderer.enabled = target;
+		holster.GetSpriteRenderer ().enabled = target;
+	}
+
+	private void ToggleSpriteVisibility() {
+		bool target = !spriteRenderer.enabled;
+		SetSpriteVisibility (target);
+	}
 
     private void Animation()
     {
@@ -110,14 +243,14 @@ public class Player : MonoBehaviour {
     {
         if (Input.GetButtonUp("Fire1")) { jetpack = true; }
 
-        if (controller.collisions.below) { jetpack = false; jetpackFuel = jetpackFuelRechargeAmount; }
+        if (controller.collisions.below) { jetpack = false; jetpackFuel = movement.jetpackFuelRechargeAmount; }
 
-        var emission = jetpackParticles.emission;
+        var emission = fx.jetpackParticles.emission;
 
         if(jetpack && Input.GetButton("Fire1") && (movementInput.y != 0 || movementInput.x != 0) && jetpackFuel > 0.0f)
         {
 
-            bool sputters = (jetpackFuel < (jetpackFuelRechargeAmount * .25f));
+            bool sputters = (jetpackFuel < (movement.jetpackFuelRechargeAmount * .25f));
 
             Vector3 jetpackVelocity = Controller2D.Direction2Vector(direction);
 
@@ -132,9 +265,10 @@ public class Player : MonoBehaviour {
 
             jetpackVelocity *= (sputters ? .5f : 1.0f);
 
-            jetpackFuel -= Time.deltaTime;
-
-            velocity = jetpackVelocity * jetpackSpeed;
+			if (!stats.godMode) {
+				jetpackFuel -= Time.deltaTime;
+			}
+            velocity = jetpackVelocity * movement.jetpackSpeed;
 
         } else
         {
@@ -146,9 +280,9 @@ public class Player : MonoBehaviour {
 
     private void InitVerticalValues()
     {
-        gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-        maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+        gravity = -(2 * movement.maxJumpHeight) / Mathf.Pow(movement.timeToJumpApex, 2);
+        maxJumpVelocity = Mathf.Abs(gravity) * movement.timeToJumpApex;
+        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * movement.minJumpHeight);
 
         //print("Gravity: " + gravity + " Jump Velocity: " + maxJumpVelocity);
 
@@ -185,12 +319,14 @@ public class Player : MonoBehaviour {
 
     private void Vertical()
     {
-        if (controller.collisions.above || controller.collisions.below)
+		if (forceApplied) {
+			forceApplied = false;
+		} else if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
         }
 
-        if(Input.GetButtonDown("Fire1") && controller.collisions.below)
+		if(Input.GetButtonDown("Fire1") && controller.collisions.below)
         {
             velocity.y = maxJumpVelocity;
         }
@@ -203,7 +339,7 @@ public class Player : MonoBehaviour {
             }
         }
 
-        velocity.y += gravity * Time.deltaTime;
+		velocity.y += gravity * Time.deltaTime;   
 
     }
 
@@ -211,7 +347,7 @@ public class Player : MonoBehaviour {
     {
         float targetVelocityX = movementInput.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,
-            accelerationTimeGrounded * (controller.collisions.below? 1.0f : accelerationTimeAirborneMultiplier));
+            movement.accelerationTimeGrounded * (controller.collisions.below? 1.0f : movement.accelerationTimeAirborneMultiplier));
     }
 
     private void ApplyMovement()

@@ -24,17 +24,18 @@ public class Projectile : MonoBehaviour, IPoolableObject {
 
 	private SpriteRenderer spriteRenderer;
 	private static CameraSmoothFollow cam;
-	private static int ID = 0;
 
 	private void Start() {
-		if (ID <= 0) {
-			cam = Camera.main.GetComponent<CameraSmoothFollow> ();
-			ID++;
-		}
+		cam = CameraSmoothFollow.instance;
 	}
 
 	public void OnObjectSpawn() {
 		alive = false;
+		spriteRenderer = GetComponent<SpriteRenderer> ();
+		speed = range / time;
+		lifeTime = time;
+
+		switchableSprites = rightSprites.Length > 1 || upSprites.Length > 1;
 	}
 
 	public bool GetAlive() {
@@ -56,12 +57,10 @@ public class Projectile : MonoBehaviour, IPoolableObject {
 	private void SwitchOffSprites() {
 
 		if (direction.x != 0) {
-
 			spriteRenderer.sprite = rightSprites[Random.Range(0, rightSprites.Length)];
 		}
 
 		if (direction.y != 0) {
-
 			spriteRenderer.sprite = upSprites[Random.Range(0, upSprites.Length)];
 		}
 
@@ -81,14 +80,7 @@ public class Projectile : MonoBehaviour, IPoolableObject {
 	public virtual void Spawn(Vector3 pos, Vector3 dir) {
 
 		alive = true;
-		spriteRenderer = GetComponent<SpriteRenderer> ();
-		speed = range / time;
-		lifeTime = time;
-
-		switchableSprites = rightSprites.Length > 1 || upSprites.Length > 1;
-
 		direction = dir;
-
 		transform.position = pos;
 
 		if (direction.x != 0) {

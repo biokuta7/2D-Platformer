@@ -8,12 +8,17 @@ public class CameraSmoothFollow : MonoBehaviour {
     public float dampingTime;
     public Transform target;
 
+	public static CameraSmoothFollow instance;
+
     private Vector3 velocity;
     private Vector3 currentPosition;
     
-
 	private Vector3 shakeOffset;
 	private float magnitude;
+
+	private void Awake() {
+		instance = this;
+	}
 
     private void LateUpdate()
     {

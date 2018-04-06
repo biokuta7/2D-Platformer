@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a1404f48c8c5b47950ad83c169a6da, type: 3}
+  m_Name: polar_star
+  m_EditorClassIdentifier: 
+  name: Polar Star
+  gunSpriteRight: {fileID: 21300078, guid: 4c178d4f50ca43646a5dc9cbfc1ca0f3, type: 3}
+  gunSpriteUp: {fileID: 21300082, guid: 4c178d4f50ca43646a5dc9cbfc1ca0f3, type: 3}
+  handleOffset: {x: 0, y: 0, z: 0.0625}
+  muzzlePosition: {x: 0.5625, y: 0.1875, z: -0.1875}
+  fireMode: 1
+  ammoMode: 0
+  maxAmmo: 0
+  gunLevels:
+  - bullet: {fileID: 1002708172150588, guid: deba1f9509dc4764b90d47b37d529224, type: 2}
+    bulletCount: 1
+    fireDelay: 0.25
+    XPToNextLevel: 10
+  - bullet: {fileID: 1741275476727866, guid: a936ab1c1d7c9034da074afa209bfeb5, type: 2}
+    bulletCount: 1
+    fireDelay: 0.25
+    XPToNextLevel: 20
+  - bullet: {fileID: 1228260737975950, guid: d6b863bd0ccf0474684d17846b341267, type: 2}
+    bulletCount: 2
+    fireDelay: 0.25
+    XPToNextLevel: 10

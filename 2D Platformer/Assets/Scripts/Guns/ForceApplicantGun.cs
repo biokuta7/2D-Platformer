@@ -11,7 +11,7 @@ public class ForceApplicantGun : Gun {
 
 	public override void Init() {
 		base.Init ();
-		p = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+		p = Player.instance;
 
 	}
 
